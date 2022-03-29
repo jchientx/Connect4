@@ -1,0 +1,35 @@
+<!doctype html>
+<head>
+  <title>Connect 4</title>
+  <link href="connect4.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Add pi p2 form input here-->
+<div id="form">
+<!-- <form>-->
+  <label for="p1-color">Enter color for Player 1 (required): </label>
+  <input id="p1-color" type="text" placeholder="eg, red or #f4511e"><br>
+  <label for="p2-color">Enter color for Player 2 (required): </label>
+  <input id="p2-color" type="text" placeholder="eg, green or #4CAF50"><br>
+  <label>Board size: </label>
+  <label for="widthdSize">WIDTH</label>
+  <input id="widthdSize" type="number" value="7">
+  <label for="heightSize">HEIGHT</label>
+  <input id="heightSize" type="number" value="6"><br>
+  <label for="playerNumber">Player number: </label>
+  <input id="playerNumber" type="number" value="2">
+  <input id="computerPlayer" type="checkbox" name="computer" value="Computer">
+  <label for=""computer>Play with Computer</label><br>
+  <button id="start-game" class="button">Game Start!</button>
+<!-- </form>-->
+</div>
+
+<div id="game">
+  <table id="board"></table>
+</div>
+
+<script src="connect4.js"></script>
+
+</body>
+</html>
