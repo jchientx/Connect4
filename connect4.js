@@ -191,5 +191,11 @@ class Player {
 document.getElementById("start-game").addEventListener("click", () => {
   let p1 = new Player(document.getElementById("p1-color").value);
   let p2 = new Player(document.getElementById("p2-color").value);
+  if (
+    document.getElementById("p1-color").value1 === "" ||
+    document.getElementById("p2-color").value === ""
+  ) {
+    alert("Please enter color name for all players!");
+  }
   new Game(p1, p2);
 });
