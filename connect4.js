@@ -11,9 +11,10 @@ class Game {
     this.height = height;
     this.width = width;
     this.currPlayer = p1; // default
+    this.gameOver = false; // default
+    this.clickFunction = this.handleClick.bind(this);
     this.makeBoard();
     this.makeHtmlBoard();
-    this.gameOver = false; // default
   }
 
   /** makeBoard: create in-JS board structure:
@@ -35,7 +36,7 @@ class Game {
     // make column tops (clickable area for adding a piece to that column)
     const top = document.createElement("tr");
     top.setAttribute("id", "column-top");
-    top.addEventListener("click", this.handleClick.bind(this)); //*
+    top.addEventListener("click", this.clickFunction); //*
 
     for (let x = 0; x < this.width; x++) {
       const headCell = document.createElement("td");
@@ -89,15 +90,18 @@ class Game {
     alert(msg);
     //* When game ends, players can't click top to drop piece
     const top = document.querySelector("#column-top");
-    top.removeEventListener("click", this.handleClick.bind(this));
-    // Game ends but click still works... Why??
+    top.removeEventListener("click", this.clickFunction);
   }
 
   /** handleClick: handle click of column top to play piece */
 
   handleClick(evt) {
     // get x column from ID of clicked cell
+
     const x = +evt.target.id;
+    // if(this.computerPlayer == true) {
+    //   x = Math.floor(Math.random() * this.width);     // 0 - 7 -> 0.546324
+    // }
 
     // get next spot in column (if none, ignore click)
     const y = this.findSpotForCol(x); //*
@@ -107,6 +111,7 @@ class Game {
 
     // place piece in board and add to HTML table
     this.board[y][x] = this.currPlayer;
+
     this.placeInTable(y, x); //*
 
     // check for win
@@ -189,13 +194,22 @@ class Player {
 
 //*
 document.getElementById("start-game").addEventListener("click", () => {
-  let p1 = new Player(document.getElementById("p1-color").value);
-  let p2 = new Player(document.getElementById("p2-color").value);
   if (
-    document.getElementById("p1-color").value1 === "" ||
+    document.getElementById("p1-color").value === "" ||
     document.getElementById("p2-color").value === ""
   ) {
-    alert("Please enter color name for all players!");
+    alert("Default colors have been applied!");
   }
+  let p1 = new Player(
+    document.getElementById("p1-color").value === ""
+      ? "purple"
+      : document.getElementById("p1-color").value
+  );
+  let p2 = new Player(
+    document.getElementById("p2-color").value === ""
+      ? "blue"
+      : document.getElementById("p2-color").value
+  );
+
   new Game(p1, p2);
 });
