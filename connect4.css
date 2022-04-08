@@ -1,11 +1,11 @@
-/* game board table */
 #board {
   height: 600px;
   border-left: 25px solid #0077be;
   border-right: 25px solid #0077be;
   border-bottom: none;
-  position: relative;
+  position: absolute;
   justify-content: center; /*no effect, not at the center */
+  display: block;
 }
 
 #board td {
@@ -37,7 +37,7 @@
 
 @keyframes drop {
   0% {
-    transform: translateY(-600px);
+    transform: translateY(-500px);
   }
   100% {
     transform: translateY(0px);
